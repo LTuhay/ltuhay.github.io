@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>Lorena Tuhay Portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+	<!-- Header -->
+	<header id="header" class="header2">
+		<div class="inner">
+			<a href="index.html" class="image avatar"><img src="images/avatar.jpg" alt="" /></a>
+			<div id="cajita">
+				<h1><strong>I'm Lorena</strong>, a <br />
+					Web and Software Developer<br />
+					and student at UADE.</h1>
+			</div>
+		</div>
+	</header>
+
+	<!-- Main -->
+	<div id="main">
+
+		<section id="four">
+			<h2>Hotel Booking System</h2>
+
+			<section>
+
+				<p>The Hotel Booking System is a robust application designed using Clean Architecture principles to
+					ensure maintainability, scalability, and separation of concerns. The system is divided into four
+					primary layers: API, Application, Domain, and Infrastructure.</p>
+
+				<h2>1. API Layer</h2>
+				<p>The API layer serves as the entry point for client interactions, providing RESTful endpoints that
+					facilitate user interactions with the system. This layer uses ASP.NET Core's framework to handle
+					incoming HTTP requests and responses. Here’s a summary of the key controllers:</p>
+
+				<ul>
+					<li>
+						<strong>AuthController:</strong> Manages user authentication and registration. It provides
+						endpoints for:
+						<ul>
+							<li>User registration: <span id="destacar">POST api/auth</span></li>
+							<li>Login: <span id="destacar">POST api/auth/login</span></li>
+						</ul>
+						Upon successful registration, users are created and returned, while login returns a JWT token
+						for authenticated sessions.
+					</li>
+					<li>
+						<strong>BookingController:</strong> Handles booking operations, including:
+						<ul>
+							<li>Creating bookings: <span id="destacar">POST api/booking</span></li>
+							<li>Retrieving booking details: <span id="destacar">GET api/booking/{bookingId}</span></li>
+							<li>Canceling bookings: <span id="destacar">DELETE api/booking/{bookingId}</span></li>
+							<li>Obtaining booking PDFs: <span id="destacar">GET api/booking/{bookingId}/pdf</span></li>
+						</ul>
+					</li>
+					<li>
+						<strong>CityController:</strong> Manages cities within the system with endpoints for:
+						<ul>
+							<li>Creating cities: <span id="destacar">POST api/city</span></li>
+							<li>Updating cities: <span id="destacar">PUT api/city/{id}</span></li>
+							<li>Deleting cities: <span id="destacar">DELETE api/city/{id}</span></li>
+							<li>Retrieving city details: <span id="destacar">GET api/city/{id}</span></li>
+							<li>Retrieving cities with associated hotels: <span id="destacar">GET
+									api/city/{id}/with-hotels</span></li>
+							<li>Retrieving popular cities: <span id="destacar">GET api/city/popular-cities</span></li>
+						</ul>
+					</li>
+					<li>
+						<strong>HotelController:</strong> Provides operations related to hotels, including:
+						<ul>
+							<li>Creating hotels: <span id="destacar">POST api/hotel</span></li>
+							<li>Updating hotels: <span id="destacar">PUT api/hotel/{hotelId}</span></li>
+							<li>Deleting hotels: <span id="destacar">DELETE api/hotel/{hotelId}</span></li>
+							<li>Searching hotels: <span id="destacar">GET api/hotel/search</span></li>
+							<li>Retrieving hotels with reviews: <span id="destacar">GET
+									api/hotel/{hotelId}/with-reviews</span></li>
+							<li>Adding guest reviews: <span id="destacar">POST api/hotel/{hotelId}/reviews</span></li>
+							<li>Deleting guest reviews: <span id="destacar">DELETE
+									api/hotel/{hotelId}/reviews/{reviewId}</span></li>
+							<li>Retrieving featured deals: <span id="destacar">GET api/hotel/featured-deals</span></li>
+							<li>Retrieving recent hotels: <span id="destacar">GET api/hotel/recent-hotels</span></li>
+						</ul>
+					</li>
+					<li>
+						<strong>PaymentController:</strong> Manages payment transactions with endpoints for:
+						<ul>
+							<li>Creating payments: <span id="destacar">POST api/payment</span></li>
+							<li>Retrieving payment details: <span id="destacar">GET api/payment/{paymentId}</span></li>
+							<li>Updating payment statuses: <span id="destacar">PATCH
+									api/payment/{paymentId}/status</span></li>
+						</ul>
+					</li>
+					<li>
+						<strong>RoomController:</strong> Handles room operations within hotels with endpoints for:
+						<ul>
+							<li>Creating rooms: <span id="destacar">POST api/room/{hotelId}</span></li>
+							<li>Updating rooms: <span id="destacar">PUT api/room/{hotelId}/{roomId}</span></li>
+							<li>Deleting rooms: <span id="destacar">DELETE api/room/{hotelId}/{roomId}</span></li>
+							<li>Retrieving room details: <span id="destacar">GET api/room/{hotelId}/{roomId}</span></li>
+							<li>Searching rooms: <span id="destacar">GET api/room/search</span></li>
+						</ul>
+					</li>
+				</ul>
+
+				<h2>2. Application Layer</h2>
+				<p>The Application layer is responsible for managing the business logic and use cases of the system. It
+					defines the service interfaces and their implementations, such as <span
+						id="destacar">IUserService</span>, <span id="destacar">IBookingService</span>, <span
+						id="destacar">ICityService</span>, <span id="destacar">IHotelService</span>, <span
+						id="destacar">IGuestReviewService</span>, <span id="destacar">IPaymentService</span>, and <span
+						id="destacar">IRoomService</span>. These services handle operations related to users, bookings,
+					cities, hotels, guest reviews, payments, and rooms. They perform various tasks, including processing
+					requests, interacting with the Domain layer to apply business rules, and managing validation.</p>
+				<p>Within this layer, JWT token management is handled to ensure secure user authentication and session
+					management. JWT tokens are generated and validated here, facilitating secure communication between
+					the client and the server. Additionally, password encryption is managed in the Application layer.
+					Passwords are hashed and verified using secure encryption algorithms to protect user credentials.
+				</p>
+				<p>FluentValidation is also utilized in the Application layer for input validation. It ensures data
+					integrity by validating incoming requests and enforcing business rules before data is processed by
+					the Domain layer. This approach helps maintain consistent and reliable data across the system.</p>
+
+				<h2>3. Domain Layer</h2>
+				<p>The Domain layer includes the core business logic and domain entities. It defines the core models
+					such as <span id="destacar">User</span>, <span id="destacar">Booking</span>, <span
+						id="destacar">City</span>, <span id="destacar">Hotel</span>, <span id="destacar">Room</span>,
+					<span id="destacar">GuestReview</span>, and <span id="destacar">Payment</span>. This layer focuses
+					on encapsulating the business rules and domain logic, independent of the Application and
+					Infrastructure layers.
+				</p>
+
+				<h2>4. Infrastructure Layer</h2>
+				<p>The Infrastructure layer manages data access and external services. It includes Entity Framework Core for ORM and
+					data management, ensuring persistence of domain entities in the database.</p>
+
+				<h2>5. Unit Testing Project</h2>
+				<p>The Unit Testing project is crucial for ensuring the reliability and correctness of the Hotel Booking
+					System. It includes tests for various components of the system, including services and data
+					validations.</p>
+
+				<h2>Security and Error Handling</h2>
+				<p>The system implements role-based authorization using policies like <span
+						id="destacar">AdminPolicy</span> and <span id="destacar">CustomerPolicy</span>, ensuring that
+					only authorized users can access certain endpoints. Error handling is managed through middleware
+					that captures and processes exceptions globally, providing consistent and user-friendly error
+					responses.</p>
+
+				<h2>Conclusion</h2>
+				<p>The Hotel Booking System's architecture leverages Clean Architecture principles to create a
+					well-structured, maintainable, and scalable backend system. By separating concerns into distinct
+					layers and incorporating best practices like EF Core, FluentValidation, JWT authentication, and
+					secure password handling, the system provides a robust foundation for managing hotel bookings
+					efficiently.</p>
+
+
+			</section>
+
+
+			<section id="one">
+				<ul class="actions">
+					<li><a href="https://github.com/LTuhay/hotel-booking-system" target="_blank" class="button">Go to
+							repository</a>
+					</li>
+				</ul>
+			</section>
+
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<ul class="icons">
+				<li><a href="https://www.linkedin.com/in/lorena-tuhay" target="_blank"
+						class="icon brands fa-linkedin"><span class="label">Twitter</span></a></li>
+				<li><a href="mailto:lorena.tuhay@gmail.com" target="_blank" class="icon solid fa-envelope"><span
+							class="label">Email</span></a></li>
+				<li><a href="https://wa.me/5491161609490" target="_blank" class="icon brands fa-whatsapp"><span
+							class="label">Github</span></a></li>
+			</ul>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
